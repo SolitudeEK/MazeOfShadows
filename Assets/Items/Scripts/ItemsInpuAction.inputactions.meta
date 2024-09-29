@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 68031f8c1dc706f48b96e6fb9063e354
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 8404be70184654265930450def6a9037, type: 3}
+  generateWrapperCode: 1
+  wrapperCodePath: Assets/Items/Scripts/Generated/ItemsInpuAction.cs
+  wrapperClassName: ItemsInputAction
+  wrapperCodeNamespace: Items

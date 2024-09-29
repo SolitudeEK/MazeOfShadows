@@ -1,0 +1,65 @@
+{
+    "name": "ItemsInpuAction",
+    "maps": [
+        {
+            "name": "Items",
+            "id": "d8ea93ef-fe04-4333-8bd6-00794087c80a",
+            "actions": [
+                {
+                    "name": "Flare",
+                    "type": "Button",
+                    "id": "e8308faf-f94f-4700-827c-0f82b274b823",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Compass",
+                    "type": "Button",
+                    "id": "9e796b3d-463a-49fd-8f2f-88139f1e0efa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "fef0fecc-adde-47ab-9a3c-224c1fe5dcfd",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Flare",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7a7eb704-5ee1-4e19-8a28-294e0f7b7148",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Compass",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9724be69-256d-4970-a796-78feaad3b6b4",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Compass",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
