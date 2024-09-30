@@ -50,7 +50,6 @@ public class Map : MonoBehaviour
         {
             counter = 0;
             DiscoverCells();
-            Debug.Log("TryDrawMap");
         }
     }
 

@@ -8,8 +8,6 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField]
     private int _height = 5;
     [SerializeField]
-    private float noiseScale = 0.1f;
-    [SerializeField]
     private GameObject _wallPrefab;
     [SerializeField]
     private GameObject _groundPrefab;

@@ -165,6 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 95932035}
   - component: {fileID: 95932036}
+  - component: {fileID: 95932037}
   m_Layer: 0
   m_Name: CompaseSprite
   m_TagString: Untagged
@@ -240,6 +241,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &95932037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95932034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab0929e62e751d14d9cd9286b83cfce6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _arrowTransform: {fileID: 703540175}
+  _characterTransform: {fileID: 817586433}
+  _generator: {fileID: 281373037}
 --- !u!1 &281373034
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +265,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 281373036}
-  - component: {fileID: 281373038}
   - component: {fileID: 281373037}
   m_Layer: 0
   m_Name: Maze
@@ -287,22 +302,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _width: 41
   _height: 51
-  noiseScale: 0.4
   _wallPrefab: {fileID: 2008392986}
   _groundPrefab: {fileID: 434867344}
---- !u!114 &281373038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 281373034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa717bf2b9a583046a1b12f385efb318, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mazeGenerator: {fileID: 281373037}
 --- !u!1 &317614031
 GameObject:
   m_ObjectHideFlags: 0
