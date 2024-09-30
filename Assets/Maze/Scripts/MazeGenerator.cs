@@ -18,17 +18,24 @@ public class MazeGenerator : MonoBehaviour
     private (int X, int Y) _finish;
     private (int X, int Y) _start;
     private List<Vector2Int> _wallsList;
-    public int[,] GetMazeGrid()
+
+    public int[,] GetMazeGrid
         => _mazeGrid;
 
-    void Awake()
+    public (int X, int Y) GetFinish
+        => _finish;
+
+    public (int X, int Y) GetStart
+        => _start;
+
+    private void Awake()
     {
         _mazeGrid = new int[_width, _height];
 
         CreateOuterWalls();
-        //CreateFinish();
-        //GenerateMaze();
         Divide(1, 1, _width - 2, _height - 2);
+        CreateFinish();
+        CreateStart();
         RenderMaze();
     }
 
@@ -50,8 +57,20 @@ public class MazeGenerator : MonoBehaviour
 
     private void CreateFinish()
     {
-        int x = Random.Range(0, _width-1);
-        int y = Random.Range(0, _height-1);
+        int x = 0;
+        int y = 0;
+
+        switch (Random.Range(0, 3))
+        {
+            case 0:
+                x = RandomNum(1, _width - 2, false); break;
+            case 1:
+                y = RandomNum(1, _height - 2, false); break;
+            case 2:
+                x = RandomNum(1, _width - 2, false); y = _height - 1; break;
+            case 3:
+                x = _width - 1;  y = RandomNum(1, _height - 2, false); break;
+        }
 
         _mazeGrid[x, y] = 0;
         _finish = (x, y);
@@ -59,10 +78,17 @@ public class MazeGenerator : MonoBehaviour
 
     private void CreateStart()
     {
-        int x = Random.Range(_width / 4, (_width / 4) * 3);
-        int y = Random.Range(_height / 4, (_height / 4) * 3);
+        int x = _width / 2;
+        int y = _height / 2;
 
-        _mazeGrid[x, y] = 0;
+        if (_mazeGrid[x, y] == 1)
+        {
+            if (_mazeGrid[x + 1, y] == 0) x++;
+            else if (_mazeGrid[x - 1, y] == 0) x--;
+            else if (_mazeGrid[x, y + 1] == 0) y++;
+            else if (_mazeGrid[x, y - 1] == 0) y--;
+        }
+
         _start = (x, y);
     }
 

@@ -31,10 +31,5 @@ public class CharacterControl : MonoBehaviour
         => _controls.Disable();
 
     private void Update()
-    {
-        // Apply movement
-        //Vector3 move = new Vector3(_movementInput.x, _movementInput.y, 0) * _moveSpeed * Time.deltaTime;
-        //transform.Translate(move);
-        _character.velocity = _movementInput;
-    }
+        => _character.velocity = _movementInput;
 }

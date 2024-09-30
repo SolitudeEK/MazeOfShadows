@@ -23,7 +23,7 @@ public class Map : MonoBehaviour
 
     void Start()
     {
-        _mazeGrid = _mazeGenerator.GetMazeGrid();
+        _mazeGrid = _mazeGenerator.GetMazeGrid;
 
         _size = (_mazeGrid.GetLength(0), _mazeGrid.GetLength(1));
 
