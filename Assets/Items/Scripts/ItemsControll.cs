@@ -6,9 +6,13 @@ public class ItemsControll : MonoBehaviour
 {
     [SerializeField]
     private GameObject _compass;
-    private ItemsInputAction _itemsAction;
 
+    private ItemsInputAction _itemsAction;
     private const float _compassHideTimer= 5f;
+    private int _compassCharges=0;
+
+    public void AddCompassCharge()
+        => _compassCharges++;
 
     private void Awake()
     {
@@ -25,8 +29,14 @@ public class ItemsControll : MonoBehaviour
 
     private void ShowCompass()
     {
-        _compass.SetActive(true);
-        StartCoroutine(HideCompassAfterDelay());
+        if (_compassCharges > 0)
+        {
+            _compassCharges--;
+
+            _compass.SetActive(true);
+
+            StartCoroutine(HideCompassAfterDelay());
+        }
 
         IEnumerator HideCompassAfterDelay()
         {
