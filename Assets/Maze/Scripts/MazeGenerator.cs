@@ -160,11 +160,11 @@ public class MazeGenerator : MonoBehaviour
             {
                 if (_mazeGrid[x, y] == 1)
                 {
-                    Instantiate(_wallPrefab, new Vector3(x * 2, y * 2, 0), Quaternion.identity);
+                    Instantiate(_wallPrefab, new Vector3(x * 2, y * 2, 0), Quaternion.identity, this.transform);
                 }
                 else
                 {
-                    Instantiate(_groundPrefab, new Vector3(x * 2, y * 2, 1), Quaternion.identity);
+                    Instantiate(_groundPrefab, new Vector3(x * 2, y * 2, 1), Quaternion.identity, this.transform);
                 }
             }
         }

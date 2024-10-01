@@ -9,6 +9,9 @@ public class Compass : MonoBehaviour
 
     private Vector3 _finish;
 
+    private void Awake()
+     => this.gameObject.SetActive(false);
+
     private void Start()
     {
         var finish = _generator.GetFinish;
