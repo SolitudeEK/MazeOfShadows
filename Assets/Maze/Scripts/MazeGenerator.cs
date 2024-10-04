@@ -63,7 +63,7 @@ public class MazeGenerator : MonoBehaviour
         int x = 0;
         int y = 0;
 
-        switch (Random.Range(0, 3))
+        switch (Random.Range(0, 4))
         {
             case 0:
                 x = RandomNum(1, _width - 2, false); break;
