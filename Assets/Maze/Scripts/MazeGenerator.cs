@@ -8,14 +8,17 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField]
     private int _height = 5;
     [SerializeField]
-    private GameObject _wallPrefab;
+    private List<GameObject> _wallPrefabs;
     [SerializeField]
-    private GameObject _groundPrefab;
+    private List<GameObject> _groundPrefabs;
 
     private int[,] _mazeGrid;
     private (int X, int Y) _finish;
     private (int X, int Y) _start;
     private List<Vector2Int> _wallsList;
+    private int _countWallPrefab;
+    private int _countGroundPrefab;
+
 
     public int[,] GetMazeGrid
         => _mazeGrid;
@@ -29,6 +32,8 @@ public class MazeGenerator : MonoBehaviour
     private void Awake()
     {
         _mazeGrid = new int[_width, _height];
+        _countGroundPrefab = _groundPrefabs.Count;
+        _countWallPrefab = _wallPrefabs.Count;
 
         CreateOuterWalls();
         Divide(1, 1, _width - 2, _height - 2);
@@ -160,13 +165,19 @@ public class MazeGenerator : MonoBehaviour
             {
                 if (_mazeGrid[x, y] == 1)
                 {
-                    Instantiate(_wallPrefab, new Vector3(x * 2, y * 2, 0), Quaternion.identity, this.transform);
+                    Instantiate(GetRandomWallPrefab(), new Vector3(x * 2, y * 2, 0), Quaternion.identity, this.transform);
                 }
                 else
                 {
-                    Instantiate(_groundPrefab, new Vector3(x * 2, y * 2, 1), Quaternion.identity, this.transform);
+                    Instantiate(GetRandomGroundPrefab(), new Vector3(x * 2, y * 2, 1), Quaternion.identity, this.transform);
                 }
             }
         }
     }
+
+    private GameObject GetRandomWallPrefab()
+       => _wallPrefabs[ Random.Range(0, _countWallPrefab)];
+
+    private GameObject GetRandomGroundPrefab()
+        => _groundPrefabs[Random.Range(0, _countGroundPrefab)];
 }
