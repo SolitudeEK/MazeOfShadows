@@ -2,11 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour
-{ 
-    [SerializeField]
-    private int _width = 5;
-    [SerializeField]
-    private int _height = 5;
+{
     [SerializeField]
     private List<GameObject> _wallPrefabs;
     [SerializeField]
@@ -18,7 +14,8 @@ public class MazeGenerator : MonoBehaviour
     private List<Vector2Int> _wallsList;
     private int _countWallPrefab;
     private int _countGroundPrefab;
-
+    private int _width = 5;
+    private int _height = 5;
 
     public int[,] GetMazeGrid
         => _mazeGrid;
@@ -31,6 +28,8 @@ public class MazeGenerator : MonoBehaviour
 
     private void Awake()
     {
+        _width = MazeConfig.MazeWidth;
+        _height = MazeConfig.MazeHeight;
         _mazeGrid = new int[_width, _height];
         _countGroundPrefab = _groundPrefabs.Count;
         _countWallPrefab = _wallPrefabs.Count;
