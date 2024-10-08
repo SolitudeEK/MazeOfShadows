@@ -11,9 +11,26 @@ public class CharacterControl : MonoBehaviour
     private Transform _characterSprite;
     [SerializeField]
     private Animator _animator;
+    [SerializeField]
+    private EndMenuControl _endMenu;
 
     private CharacterInputAction _controls;
     private Vector2 _movementInput;
+
+    public void Lose()
+    {
+        _controls.Disable();
+        //Add animation trigger
+        _endMenu.SetResults(false);
+    }
+
+    public void Win()
+    {
+        _controls.Disable();
+        //Add animation trigger
+        _endMenu.SetResults(true);
+    }
+
     private void Awake()
     {
         _controls = new CharacterInputAction();

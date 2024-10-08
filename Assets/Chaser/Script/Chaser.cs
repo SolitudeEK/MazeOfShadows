@@ -62,7 +62,7 @@ public class Chaser : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Dead");
+            other.GetComponent<CharacterControl>().Lose();
         }
     }
 

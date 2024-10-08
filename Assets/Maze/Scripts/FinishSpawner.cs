@@ -14,7 +14,7 @@ public class FinishSpawner : MonoBehaviour
 
         if (pos.X == 0)
         { }
-        else if (pos.X == xLimit)
+        else if (pos.X == xLimit-1)
             this.transform.eulerAngles = new Vector3(0, 0, 180);
         else if (pos.Y == 0)
             this.transform.eulerAngles = new Vector3(0, 0, 90);
