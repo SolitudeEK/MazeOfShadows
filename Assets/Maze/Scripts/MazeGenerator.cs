@@ -39,6 +39,7 @@ public class MazeGenerator : MonoBehaviour
         CreateFinish();
         CreateStart();
         RenderMaze();
+        PathFinder.SetMazeGrid(_mazeGrid);
     }
 
 
