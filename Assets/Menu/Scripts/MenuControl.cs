@@ -9,6 +9,8 @@ public class MenuControl : MonoBehaviour
     [SerializeField]
     private Button _settingsButton;
     [SerializeField]
+    private Button _backSettingsButton;
+    [SerializeField]
     private Button _exitButton;
     [SerializeField] 
     private Button _backGameButton;
@@ -22,6 +24,8 @@ public class MenuControl : MonoBehaviour
     private GameObject _stratGameMenu;
     [SerializeField]
     private GameObject _mainMenu;
+    [SerializeField]
+    private GameObject _settingsMenu;
 
     private readonly (int, int) SmallGameSize = (31, 31);
     private readonly (int, int) MediumGameSize = (51, 51);
@@ -31,7 +35,9 @@ public class MenuControl : MonoBehaviour
     {
         _exitButton.onClick.AddListener(Exit);
         _startButton.onClick.AddListener(ShowGameMenu);
-        _backGameButton.onClick.AddListener(BackGameMenu);
+        _backGameButton.onClick.AddListener(BackToMainMenu);
+        _settingsButton.onClick.AddListener(ShowSettingsMenu);
+        _backSettingsButton.onClick.AddListener(BackToMainMenu);
 
         _startSmallGame.onClick.AddListener(SetSmallGame);
         _startSmallGame.onClick.AddListener(StartGame);
@@ -55,10 +61,17 @@ public class MenuControl : MonoBehaviour
         _stratGameMenu.SetActive(true);
     }
 
-    private void BackGameMenu()
+    private void BackToMainMenu()
     {
         _stratGameMenu.SetActive(false);
+        _settingsMenu.SetActive(false);
         _mainMenu.SetActive(true);
+    }
+
+    private void ShowSettingsMenu()
+    {
+        _mainMenu.SetActive(false);
+        _settingsMenu.SetActive(true);
     }
 
     private void StartGame()
