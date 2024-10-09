@@ -5,6 +5,8 @@ public class ChaserWake : MonoBehaviour
 {
     [SerializeField]
     private GameObject _chaser;
+    [SerializeField] 
+    private AudioClip _awaknessSound;
     [SerializeField]
     private float _delay = 2;
 
@@ -12,6 +14,7 @@ public class ChaserWake : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            SoundFXManager.Instance.PlaySound(_awaknessSound, this.transform, 1);
             StartCoroutine(DelayedWake(_delay));
         }
 

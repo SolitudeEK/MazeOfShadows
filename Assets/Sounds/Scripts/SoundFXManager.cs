@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundFXManager : MonoBehaviour
 {
-    public SoundFXManager Instance;
+    public static SoundFXManager Instance;
 
     [SerializeField]
     private AudioSource _soundObject;
@@ -24,6 +22,18 @@ public class SoundFXManager : MonoBehaviour
         audioSource.Play();
 
         Destroy(audioSource.gameObject, audioClip.length);
+    }
+
+    public GameObject PlaySoundLoop(AudioClip audioClip, Transform transform, float volume)
+    {
+        var audioSource = Instantiate(_soundObject, transform.position, Quaternion.identity);
+
+        audioSource.loop = true;
+        audioSource.clip = audioClip;
+        audioSource.volume = volume;
+        audioSource.Play();
+
+        return audioSource.gameObject;
     }
 }
 

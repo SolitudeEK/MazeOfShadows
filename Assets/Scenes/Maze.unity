@@ -497,7 +497,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifetime: 10
   _character: {fileID: 817586433}
-  _moveSpeed: 3
+  _moveSpeed: 3.5
+  _stepSound: {fileID: 8300000, guid: 46b2bb57c8f72754da4bb008070eafd2, type: 3}
+  _deadSound: {fileID: 8300000, guid: 6f85cab3708e2334f890c38beac25f1a, type: 3}
 --- !u!1 &252423592
 GameObject:
   m_ObjectHideFlags: 0
@@ -2977,6 +2979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chaser: {fileID: 243322131}
+  _awaknessSound: {fileID: 8300000, guid: f5ac67b24a71b3a4db602959126008ab, type: 3}
   _delay: 2
 --- !u!61 &960229616
 BoxCollider2D:
@@ -5077,7 +5080,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b52aa14a7df95a4fb495aca1fbcc848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Instance: {fileID: 0}
   _soundObject: {fileID: 8901540017587940073, guid: 9837f17fe7572ec40a54997c8572ca9c, type: 3}
 --- !u!4 &1604121140
 Transform:
