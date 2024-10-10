@@ -18,12 +18,12 @@ public class Chaser : MonoBehaviour
     private List<Vector2Int> _path;
     private Vector2Int _currentTarget;
     private int _currentPathIndex = 0;
-    private GameObject _stepAudio;
+    private AudioSource _stepAudio;
     private void OnEnable()
     {
         StartLifetime();
         UpdatePath();
-        _stepAudio = SoundFXManager.Instance.PlaySoundLoop(_stepSound, transform, 0.7f);
+        _stepAudio = SoundFXManager.Instance.PlaySoundLoop(_stepSound, transform, 0.4f);
     }
 
     private void Update()
@@ -67,7 +67,7 @@ public class Chaser : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(_stepAudio);
+            Destroy(_stepAudio.gameObject);
             other.GetComponent<CharacterControl>().Lose();
         }
     }
@@ -80,7 +80,7 @@ public class Chaser : MonoBehaviour
         IEnumerator DelayedDestroy(float delay)
         {
             yield return new WaitForSeconds(delay);
-            Destroy(_stepAudio);
+            Destroy(_stepAudio.gameObject);
             SoundFXManager.Instance.PlaySound(_deadSound, transform, 1);
             Destroy(this.gameObject);
         }

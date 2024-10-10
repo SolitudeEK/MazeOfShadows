@@ -24,7 +24,7 @@ public class SoundFXManager : MonoBehaviour
         Destroy(audioSource.gameObject, audioClip.length);
     }
 
-    public GameObject PlaySoundLoop(AudioClip audioClip, Transform transform, float volume)
+    public AudioSource PlaySoundLoop(AudioClip audioClip, Transform transform, float volume)
     {
         var audioSource = Instantiate(_soundObject, transform.position, Quaternion.identity);
 
@@ -33,7 +33,7 @@ public class SoundFXManager : MonoBehaviour
         audioSource.volume = volume;
         audioSource.Play();
 
-        return audioSource.gameObject;
+        return audioSource;
     }
 }
 

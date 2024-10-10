@@ -13,9 +13,13 @@ public class CharacterControl : MonoBehaviour
     private Animator _animator;
     [SerializeField]
     private EndMenuControl _endMenu;
+    [SerializeField]
+    private AudioClip _stepSound;
+
 
     private CharacterInputAction _controls;
     private Vector2 _movementInput;
+    private AudioSource _walkAudio;
 
     public void Lose()
     {
@@ -46,6 +50,12 @@ public class CharacterControl : MonoBehaviour
         _controls.Movement.Left.canceled += _ => Stop(false);
     }
 
+    private void Start()
+    {
+        _walkAudio = SoundFXManager.Instance.PlaySoundLoop(_stepSound, this.transform, 0.4f);
+        _walkAudio.Stop();
+    }
+
     private void OnEnable()
         => _controls.Enable();
 
@@ -59,36 +69,63 @@ public class CharacterControl : MonoBehaviour
     {
         _movementInput.y = _moveSpeed;
         _characterSprite.eulerAngles = Vector3.zero;
+
         _animator.SetBool("IsMoving", true);
+        StartWalkingSound();
     }
 
-    private void MoveDown() {
+    private void MoveDown() 
+    {
         _movementInput.y = -_moveSpeed;
         _characterSprite.eulerAngles = new Vector3(0, 0, 180);
+
         _animator.SetBool("IsMoving", true);
+        StartWalkingSound();
     }
 
     private void MoveLeft()
     { 
         _movementInput.x = -_moveSpeed;
         _characterSprite.eulerAngles = new Vector3(0, 0, 90);
+
         _animator.SetBool("IsMoving", true);
+        StartWalkingSound();
     }
 
     private void MoveRight()
     { 
         _movementInput.x = _moveSpeed;
         _characterSprite.eulerAngles = new Vector3(0, 0, -90);
+
         _animator.SetBool("IsMoving", true);
+        StartWalkingSound();
     }
 
     private void Stop(bool IsVertical)
     {
         if (IsVertical)
             _movementInput.y = 0;
-        else 
+        else
             _movementInput.x = 0;
 
-        _animator.SetBool("IsMoving", false);
+        if (_movementInput.x == 0 & _movementInput.y == 0)
+        {
+            _animator.SetBool("IsMoving", false);
+            StopWalkingSound();
+        }
+
+    }
+
+    private void StartWalkingSound()
+    {
+        if (!_walkAudio.isPlaying)
+            _walkAudio.Play();
+    }
+
+    private void StopWalkingSound()
+    {
+        if (_walkAudio.isPlaying)
+            _walkAudio.Stop();
+
     }
 }
