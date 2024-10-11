@@ -11,6 +11,8 @@ public class Chaser : MonoBehaviour
     [SerializeField]
     private float _moveSpeed = 3.9f;
     [SerializeField]
+    private Animator _animator;
+    [SerializeField]
     private AudioClip _stepSound;
     [SerializeField]
     private AudioClip _deadSound;
@@ -23,7 +25,7 @@ public class Chaser : MonoBehaviour
     {
         StartLifetime();
         UpdatePath();
-        _stepAudio = SoundFXManager.Instance.PlaySoundLoop(_stepSound, transform, 0.4f);
+        _stepAudio = SoundFXManager.Instance.PlaySoundLoop(_stepSound, transform, 0.6f);
     }
 
     private void Update()
@@ -38,6 +40,12 @@ public class Chaser : MonoBehaviour
         Vector3 direction = (targetPosition - transform.position).normalized;
 
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, _moveSpeed * Time.deltaTime);
+
+        if (direction != Vector3.zero)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle-90));
+        }
 
         if (Vector2.Distance(transform.position, targetPosition) < 0.1f)
         {
@@ -82,7 +90,8 @@ public class Chaser : MonoBehaviour
             yield return new WaitForSeconds(delay);
             Destroy(_stepAudio.gameObject);
             SoundFXManager.Instance.PlaySound(_deadSound, transform, 1);
-            Destroy(this.gameObject);
+            _animator.SetBool("isBreaking", true);
+            Destroy(this.gameObject, 0.8f);
         }
     }
 }
