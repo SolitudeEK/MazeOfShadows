@@ -22,7 +22,7 @@ public class ItemsControll : MonoBehaviour
     }
 
     private void OnEnable()
-    => _itemsAction.Enable();
+        => _itemsAction.Enable();
 
     private void OnDisable()
         => _itemsAction.Disable();

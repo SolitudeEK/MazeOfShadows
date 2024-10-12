@@ -75,7 +75,7 @@ public class Chaser : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(_stepAudio.gameObject);
+            //Destroy(_stepAudio.gameObject);
             other.GetComponent<CharacterControl>().Lose();
         }
     }

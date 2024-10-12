@@ -16,7 +16,6 @@ public class CharacterControl : MonoBehaviour
     [SerializeField]
     private AudioClip _stepSound;
 
-
     private CharacterInputAction _controls;
     private Vector2 _movementInput;
     private AudioSource _walkAudio;
@@ -24,14 +23,12 @@ public class CharacterControl : MonoBehaviour
     public void Lose()
     {
         _controls.Disable();
-        //Add animation trigger
         _endMenu.SetResults(false);
     }
 
     public void Win()
     {
         _controls.Disable();
-        //Add animation trigger
         _endMenu.SetResults(true);
     }
 
@@ -39,15 +36,9 @@ public class CharacterControl : MonoBehaviour
     {
         _controls = new CharacterInputAction();
 
-        _controls.Movement.Up.performed += _ => MoveUp();
-        _controls.Movement.Down.performed += _ => MoveDown();
-        _controls.Movement.Right.performed += _ => MoveRight();
-        _controls.Movement.Left.performed += _ => MoveLeft();
-
-        _controls.Movement.Up.canceled += _ => Stop(true);
-        _controls.Movement.Down.canceled += _ => Stop(true);
-        _controls.Movement.Right.canceled += _ => Stop(false);
-        _controls.Movement.Left.canceled += _ => Stop(false);
+        // Subscribe to movement inputs
+        _controls.Movement.Move.performed += ctx => Move(ctx.ReadValue<Vector2>());
+        _controls.Movement.Move.canceled += _ => Stop();
     }
 
     private void Start()
@@ -65,55 +56,32 @@ public class CharacterControl : MonoBehaviour
     private void FixedUpdate()
         => _character.velocity = _movementInput;
 
-    private void MoveUp()
+    private void Move(Vector2 input)
     {
-        _movementInput.y = _moveSpeed;
-        _characterSprite.eulerAngles = Vector3.zero;
+        _movementInput = input * _moveSpeed;
 
-        _animator.SetBool("IsMoving", true);
-        StartWalkingSound();
-    }
+        if (_movementInput.x > 0)
+            _characterSprite.eulerAngles = new Vector3(0, 0, -90);
+        else if (_movementInput.x < 0)
+            _characterSprite.eulerAngles = new Vector3(0, 0, 90);
+        else if (_movementInput.y > 0)
+            _characterSprite.eulerAngles = Vector3.zero;
+        else if (_movementInput.y < 0)
+            _characterSprite.eulerAngles = new Vector3(0, 0, 180);
 
-    private void MoveDown() 
-    {
-        _movementInput.y = -_moveSpeed;
-        _characterSprite.eulerAngles = new Vector3(0, 0, 180);
-
-        _animator.SetBool("IsMoving", true);
-        StartWalkingSound();
-    }
-
-    private void MoveLeft()
-    { 
-        _movementInput.x = -_moveSpeed;
-        _characterSprite.eulerAngles = new Vector3(0, 0, 90);
-
-        _animator.SetBool("IsMoving", true);
-        StartWalkingSound();
-    }
-
-    private void MoveRight()
-    { 
-        _movementInput.x = _moveSpeed;
-        _characterSprite.eulerAngles = new Vector3(0, 0, -90);
-
-        _animator.SetBool("IsMoving", true);
-        StartWalkingSound();
-    }
-
-    private void Stop(bool IsVertical)
-    {
-        if (IsVertical)
-            _movementInput.y = 0;
-        else
-            _movementInput.x = 0;
-
-        if (_movementInput.x == 0 & _movementInput.y == 0)
+        if (_movementInput != Vector2.zero)
         {
-            _animator.SetBool("IsMoving", false);
-            StopWalkingSound();
+            StartWalkingSound();
+            _animator.SetBool("IsMoving", true);
         }
+    }
 
+    private void Stop()
+    {
+        _movementInput = Vector2.zero;
+
+        _animator.SetBool("IsMoving", false);
+        StopWalkingSound();
     }
 
     private void StartWalkingSound()
@@ -126,6 +94,5 @@ public class CharacterControl : MonoBehaviour
     {
         if (_walkAudio.isPlaying)
             _walkAudio.Stop();
-
     }
 }

@@ -29,7 +29,7 @@ public class EndMenuControl : MonoBehaviour
     private void OnEnable()
     {
         var time = TimeSpan.FromSeconds(Time.time - _startTime);
-        _timerText.text = $"{time.Minutes}:{time.Seconds}";
+        _timerText.text = string.Format("{0:D2}:{1:D2}", time.Minutes, time.Seconds);
     }
 
     private void ToMainMenu()

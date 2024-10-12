@@ -64,6 +64,15 @@ namespace Character
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""69593992-8e0e-4484-a3c5-2a038a2c45de"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -154,6 +163,61 @@ namespace Character
                     ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""0f2e6c61-b722-4cb6-ae02-77120cce5f69"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""a03a079d-b659-4ae0-a296-d86f380d295e"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""e4ddb78a-996e-4207-8038-4d6a59778ac7"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""7098aad6-4c7e-43db-86f3-1084098b2bf3"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""8e65b0a1-b240-4674-bfab-aa737e18b779"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -166,6 +230,7 @@ namespace Character
             m_Movement_Down = m_Movement.FindAction("Down", throwIfNotFound: true);
             m_Movement_Right = m_Movement.FindAction("Right", throwIfNotFound: true);
             m_Movement_Left = m_Movement.FindAction("Left", throwIfNotFound: true);
+            m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -231,6 +296,7 @@ namespace Character
         private readonly InputAction m_Movement_Down;
         private readonly InputAction m_Movement_Right;
         private readonly InputAction m_Movement_Left;
+        private readonly InputAction m_Movement_Move;
         public struct MovementActions
         {
             private @CharacterInputAction m_Wrapper;
@@ -239,6 +305,7 @@ namespace Character
             public InputAction @Down => m_Wrapper.m_Movement_Down;
             public InputAction @Right => m_Wrapper.m_Movement_Right;
             public InputAction @Left => m_Wrapper.m_Movement_Left;
+            public InputAction @Move => m_Wrapper.m_Movement_Move;
             public InputActionMap Get() { return m_Wrapper.m_Movement; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -260,6 +327,9 @@ namespace Character
                 @Left.started += instance.OnLeft;
                 @Left.performed += instance.OnLeft;
                 @Left.canceled += instance.OnLeft;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
             }
 
             private void UnregisterCallbacks(IMovementActions instance)
@@ -276,6 +346,9 @@ namespace Character
                 @Left.started -= instance.OnLeft;
                 @Left.performed -= instance.OnLeft;
                 @Left.canceled -= instance.OnLeft;
+                @Move.started -= instance.OnMove;
+                @Move.performed -= instance.OnMove;
+                @Move.canceled -= instance.OnMove;
             }
 
             public void RemoveCallbacks(IMovementActions instance)
@@ -299,6 +372,7 @@ namespace Character
             void OnDown(InputAction.CallbackContext context);
             void OnRight(InputAction.CallbackContext context);
             void OnLeft(InputAction.CallbackContext context);
+            void OnMove(InputAction.CallbackContext context);
         }
     }
 }
