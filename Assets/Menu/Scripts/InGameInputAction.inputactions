@@ -1,0 +1,45 @@
+{
+    "name": "InGameInputAction",
+    "maps": [
+        {
+            "name": "MenuInteraction",
+            "id": "943d089e-5a46-4e0f-8304-82d2fc485c1a",
+            "actions": [
+                {
+                    "name": "MenuCall",
+                    "type": "Button",
+                    "id": "df3a1482-d536-433c-acd4-e314ad2ebda6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a9a9712a-901f-49d4-a86a-c5f7ebd899a5",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuCall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af8922aa-2e59-4abf-96b6-52f29656e79a",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuCall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

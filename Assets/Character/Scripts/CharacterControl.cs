@@ -36,7 +36,6 @@ public class CharacterControl : MonoBehaviour
     {
         _controls = new CharacterInputAction();
 
-        // Subscribe to movement inputs
         _controls.Movement.Move.performed += ctx => Move(ctx.ReadValue<Vector2>());
         _controls.Movement.Move.canceled += _ => Stop();
     }
