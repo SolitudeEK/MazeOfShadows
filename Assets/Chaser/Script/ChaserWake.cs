@@ -12,10 +12,13 @@ public class ChaserWake : MonoBehaviour
     [SerializeField]
     private Animator _awakeAnimation;
 
+    private bool _isTriggered = false;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")&& !_isTriggered)
         {
+            _isTriggered = true;
             SoundFXManager.Instance.PlaySound(_awaknessSound, this.transform, 1);
             _awakeAnimation.SetTrigger("Awake");
             StartCoroutine(DelayedWake(_delay));
