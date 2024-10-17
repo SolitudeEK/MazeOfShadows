@@ -1,7 +1,10 @@
+using System.Numerics;
+
 public static class MazeConfig
 {
     private static int _mazeWidth = 41;
     private static int _mazeHeight = 41;
+
     public static int MazeWidth
     {
         private set { _mazeWidth = value; }

@@ -56,11 +56,6 @@ public class Map : MonoBehaviour
     {
         Vector2Int cur = new Vector2Int((int)(_charPosition.position.x / 2), (int)(_charPosition.position.y / 2));
 
-       /* if (_mazeGrid[cur.x, cur.y] == 0)
-            _minimapTexture.SetPixel(cur.x, cur.y, _groundColor);
-        else if (_mazeGrid[cur.x, cur.y] == 1)
-            _minimapTexture.SetPixel(cur.x, cur.y, _wallColor);*/
-
         for (int dx = -_revealRadius; dx <= _revealRadius; dx++)
         {
             for (int dy = -_revealRadius; dy <= _revealRadius; dy++)
